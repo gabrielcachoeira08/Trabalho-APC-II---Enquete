@@ -1,4 +1,6 @@
 #Trabalho enquete
+
+#Funções
 def cadastrar_opcao(lista_opcoes, lista_votos):  #1. Cadastrar Opção
     opcao = input("Digite uma opção de voto: ")
     lista_opcoes.append(opcao) #lista_opcoes é a lista que vai armazenar as opções
@@ -7,7 +9,7 @@ def cadastrar_opcao(lista_opcoes, lista_votos):  #1. Cadastrar Opção
 def registrar_voto(lista_opcoes, lista_votos): #3. Registrar Voto
     for i in range(len(lista_opcoes)):
             print(f"{i + 1} -> {opcoes[i]}")  #lista as opções com um número para votar em cada uma
-    voto = int(input("Digite o seu voto: "))
+    voto = int(input("Digite o número que representa a sua opção de voto: "))
     for i in range(len(lista_opcoes)):
         if voto == (i + 1):  #acha o índice da opção votada
             lista_votos[i] += 1  #o índice da lista_votos corresponde ao índice da lista_opcoes
@@ -23,14 +25,29 @@ def mostrar_vencedor(lista_opcoes, lista_votos): #6. Mostrar Opção Vencedora
     for i in range(len(lista_votos)):
         if lista_votos[i] == mais_votos:
             vencedores.append(lista_opcoes[i])
+    porcentagem_vencedor = (mais_votos / sum(lista_votos)) * 100
     if len(vencedores) == 1:
-        porcentagem_vencedor = (mais_votos / sum(lista_votos)) * 100
         print(f"Vencedor: {vencedores[0]} com {mais_votos} votos ({porcentagem_vencedor:.2f}%)")
     else:
         print(f"Houve um empate entre {len(vencedores)} vencedores.")
-        print(f"Vencedores: {vencedores} com {mais_votos} votos cada.")
-        
+        print(f"Vencedores: {vencedores} com {mais_votos} votos ({porcentagem_vencedor:.2f}%) cada.")
 
+        #teste pra reiniciar a votação
+        reiniciar = input("Deseja Realizar um segundo voto somente com os vencedores? (y/n) \n>")
+        if reiniciar == "y":
+            for i in range(len(lista_votos)):
+                if lista_votos[i] == mais_votos:
+                    lista_votos[i] = 0
+                else:
+                    lista_votos.pop(i)
+                    lista_opcoes.pop(i)
+
+#def decidir_empate(lista_opcoes, lista_votos):
+#    reiniciar = input("Deseja reiniciar a votação? (y/n): ")
+#    if reiniciar == y:
+
+
+#Código Principal
 opcoes = []
 votos = []
 escolha = 0
