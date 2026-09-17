@@ -34,17 +34,13 @@ def mostrar_vencedor(lista_opcoes, lista_votos): #6. Mostrar Opção Vencedora
 
         #teste pra reiniciar a votação
         reiniciar = input("Deseja Realizar um segundo voto somente com os vencedores? (y/n) \n>")
-        if reiniciar == "y":
+        if reiniciar == "y":   #É possível reiniciar a votação apenas com os vencedores, como um "segundo turno"
             for i in range(len(lista_votos)):
                 if lista_votos[i] == mais_votos:
                     lista_votos[i] = 0
                 else:
                     lista_votos.pop(i)
                     lista_opcoes.pop(i)
-
-#def decidir_empate(lista_opcoes, lista_votos):
-#    reiniciar = input("Deseja reiniciar a votação? (y/n): ")
-#    if reiniciar == y:
 
 
 #Código Principal
