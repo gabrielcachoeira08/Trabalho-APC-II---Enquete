@@ -33,14 +33,18 @@ def mostrar_vencedor(lista_opcoes, lista_votos): #6. Mostrar Opção Vencedora
         print(f"Vencedores: {vencedores} com {mais_votos} votos ({porcentagem_vencedor:.2f}%) cada.")
 
         #teste pra reiniciar a votação
-        reiniciar = input("Deseja Realizar um segundo voto somente com os vencedores? (y/n) \n>")
+        reiniciar = input("Deseja Realizar um segundo turno? (y/n) \n>")
         if reiniciar == "y":   #É possível reiniciar a votação apenas com os vencedores, como um "segundo turno"
-            for i in range(len(lista_votos)):
+            tamanho = len(lista_opcoes)  #tamanho atual da lista
+            i = 0  #contador
+            while i < tamanho:  #enquanto o contador for menor que o tamanho, o while percorre a lista
                 if lista_votos[i] == mais_votos:
                     lista_votos[i] = 0
-                else:
+                    i += 1
+                else:  #remove os não vencedores
                     lista_votos.pop(i)
                     lista_opcoes.pop(i)
+                    tamanho -= 1
 
 
 #Código Principal
@@ -63,7 +67,7 @@ while escolha != 7:
         elif sum(votos) == 0:
             print("Nenhum voto válido registrado")
         else:
-            print("Nenhuma opção válida registrada.")
+            mostrar_resultado(opcoes, votos)
     elif escolha == 6:
         if len(opcoes) == 0:
             print("Nenhuma opção válida registrada.")
