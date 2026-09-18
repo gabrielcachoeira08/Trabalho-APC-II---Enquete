@@ -58,9 +58,19 @@ while escolha != 7:
     elif escolha == 4:
         print(f"{sum(votos)} votos totais.")
     elif escolha == 5:
-        mostrar_resultado(opcoes, votos)
+        if len(opcoes) == 0:
+            print("Nenhuma opção válida registrada.")
+        elif sum(votos) == 0:
+            print("Nenhum voto válido registrado")
+        else:
+            print("Nenhuma opção válida registrada.")
     elif escolha == 6:
-        mostrar_vencedor(opcoes, votos)
+        if len(opcoes) == 0:
+            print("Nenhuma opção válida registrada.")
+        elif sum(votos) == 0:
+            print("Nenhum voto válido registrado")
+        else:
+            mostrar_vencedor(opcoes, votos)
     elif escolha == 7:
         print("Encerrando o programa...")
     else:
